@@ -1,83 +1,113 @@
 import { observer } from "mobx-react-lite"
 import React, { FC } from "react"
-import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
-import {
-  Text,
-} from "app/components"
-import { isRTL } from "../i18n"
+import { ImageBackground, ImageStyle, View, Text, ViewStyle, TextStyle, Pressable } from "react-native"
+
 import { AppStackScreenProps } from "../navigators"
-import { colors, spacing } from "../theme"
-import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
+import { Icon } from "app/components"
 
-const welcomeLogo = require("../../assets/images/logo.png")
-const welcomeFace = require("../../assets/images/welcome-face.png")
-
+const backgroundImage = require("../../assets/images/Dashboard/DashBoard.png")
 interface WelcomeScreenProps extends AppStackScreenProps<"Welcome"> {}
 
-export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
-) {
-
-  const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
-
+export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(props:any) {
+  const { navigation } = props
   return (
-    <View style={$container}>
+    <ImageBackground source={backgroundImage} style={$backgroundImage}>
       <View style={$topContainer}>
-        <Image style={$welcomeLogo} source={welcomeLogo} resizeMode="contain" />
-        <Text
-          testID="welcome-heading"
-          style={$welcomeHeading}
-          tx="welcomeScreen.readyForLaunch"
-          preset="heading"
-        />
-        <Text tx="welcomeScreen.exciting" preset="subheading" />
-        <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" />
+        <Icon icon="user" color="white" style={$icon}></Icon>
+        <Text style={$text}> Avantika Garg</Text>
+        <Icon icon="menu" color="white" style={$icon}></Icon>
       </View>
-
-      <View style={[$bottomContainer, $bottomContainerInsets]}>
-        <Text tx="welcomeScreen.postscript" size="md" />
+      <View style={$bottomContainer}>
+        <View style={$dashboardBackground}>
+          <Text style={$dashboardText}>DASHBOARD</Text>
+        </View>
       </View>
-    </View>
+      <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 50 }}>
+        <Pressable
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+            height: 150,
+            width: 150,
+            borderRadius: 20,
+            elevation: 15
+          }}
+          onPress={() => navigation.navigate("AdminModels")}
+        >
+          <View
+            style={{
+              backgroundColor: "#006049",
+              height: 100,
+              width: 100,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 50,
+              marginBottom: 10,
+              elevation:5
+            }}
+          >
+            <Icon icon="admin" color="white" style={{ height: 50, width: 50 }}></Icon>
+          </View>
+          <Text style={{ fontWeight: "bold", fontSize: 18 }}>Admin</Text>
+        </Pressable>
+        <Pressable
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+            height: 150,
+            width: 150,
+            borderRadius: 20,
+            elevation: 15,
+          }}
+          onPress={() => navigation.navigate("UserModels")}
+        >
+          <View
+            style={{
+              backgroundColor: "#006049",
+              height: 100,
+              width: 100,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 50,
+              marginBottom: 10,
+              elevation: 5,
+            }}
+          >
+            <Icon icon="users" color="white" style={{ height: 50, width: 50 }}></Icon>
+          </View>
+          <Text style={{ fontWeight: "bold", fontSize: 18 }}>User</Text>
+        </Pressable>
+      </View>
+    </ImageBackground>
   )
 })
 
-const $container: ViewStyle = {
+const $backgroundImage: ImageStyle = {
   flex: 1,
-  backgroundColor: colors.background,
-}
-
-const $topContainer: ViewStyle = {
-  flexShrink: 1,
-  flexGrow: 1,
-  flexBasis: "57%",
-  justifyContent: "center",
-  paddingHorizontal: spacing.lg,
-}
-
-const $bottomContainer: ViewStyle = {
-  flexShrink: 1,
-  flexGrow: 0,
-  flexBasis: "43%",
-  backgroundColor: colors.palette.neutral100,
-  borderTopLeftRadius: 16,
-  borderTopRightRadius: 16,
-  paddingHorizontal: spacing.lg,
-  justifyContent: "space-around",
-}
-const $welcomeLogo: ImageStyle = {
-  height: 88,
+  height: "100%",
   width: "100%",
-  marginBottom: spacing.xxl,
+  resizeMode: "cover",
 }
-
-const $welcomeFace: ImageStyle = {
-  height: 169,
-  width: 269,
-  position: "absolute",
-  bottom: -47,
-  right: -80,
-  transform: [{ scaleX: isRTL ? -1 : 1 }],
+const $topContainer: ViewStyle = {
+  marginTop: 100,
+  justifyContent: "space-around",
+  flexDirection: "row",
 }
-
-const $welcomeHeading: TextStyle = {
-  marginBottom: spacing.md,
+const $bottomContainer: ViewStyle = {
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: 100,
 }
+const $dashboardBackground: ViewStyle = {
+  backgroundColor: "white",
+  width: 200,
+  height: 50,
+  borderRadius: 50,
+  justifyContent: "center",
+  alignItems: "center",
+}
+const $dashboardText: TextStyle = { fontSize: 20, fontWeight: "bold", color: "#00AF3D" }
+const $icon: ImageStyle = { height: 50, width: 50 }
+const $text: TextStyle = { fontSize: 20, fontWeight: "bold", color: "white", alignSelf: "center" }

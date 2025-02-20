@@ -99,6 +99,14 @@ export const iconRegistry = {
   settings: require("../../assets/icons/settings.png"),
   view: require("../../assets/icons/view.png"),
   x: require("../../assets/icons/x.png"),
+  user: require("../../assets/icons/DashBoard/user.png"),
+  admin: require("../../assets/icons/DashBoard/admin.png"),
+  users: require("../../assets/icons/DashBoard/users.png"),
+  manage: require("../../assets/icons/Admin_Models/manage.png"),
+  create: require("../../assets/icons/Admin_Models/create.png"),
+  bid: require("../../assets/icons/User_Models/bid.png")
+  
+  
 }
 
 const $imageStyleBase: ImageStyle = {

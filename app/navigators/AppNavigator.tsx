@@ -34,7 +34,13 @@ import { colors } from "app/theme"
 export type AppStackParamList = {
   Welcome: undefined
   // 🔥 Your screens go here
-  // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
+  CreateNewTenders: undefined
+	AdminModels: undefined
+	ViewAdminTenders: undefined
+	UserModels: undefined
+	BidManageAdmin: undefined
+	BidUsers: undefined
+	// IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
 }
 
 /**
@@ -58,7 +64,13 @@ const AppStack = observer(function AppStack() {
     >
           <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
       {/** 🔥 Your screens go here */}
-      {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
+      <Stack.Screen name="CreateNewTenders" component={Screens.CreateNewTendersScreen} />
+			<Stack.Screen name="AdminModels" component={Screens.AdminModelsScreen} />
+			<Stack.Screen name="ViewAdminTenders" component={Screens.ViewAdminTendersScreen} />
+			<Stack.Screen name="UserModels" component={Screens.UserModelsScreen} />
+			<Stack.Screen name="BidManageAdmin" component={Screens.BidManageAdminScreen} />
+			<Stack.Screen name="BidUsers" component={Screens.BidUsersScreen} />
+			{/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
     </Stack.Navigator>
   )
 })
